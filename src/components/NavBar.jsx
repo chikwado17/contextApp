@@ -1,10 +1,16 @@
 import React from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 class NavBar extends React.Component {
+
+    static contextType = ThemeContext;
     
     render() { 
+        const { isLightTheme, dark, light } = this.context;
+        const theme = isLightTheme ? light : dark;
+
         return ( 
-            <nav>
+            <nav style={{color: theme.syntax, background: theme.ui}}>
                 <h1>ContextApp</h1>
                 <ul>
                     <li>Home</li>
