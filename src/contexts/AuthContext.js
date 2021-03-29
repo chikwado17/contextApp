@@ -1,25 +1,20 @@
-import React, { Component, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 
 export const AuthContext = createContext();
 
-class AuthContextProvider extends Component {
-    state = { 
-        isAuthenticated: false
-    }
+const AuthContextProvider = (props) => {
 
-    handleAuthentication = () => {
-        this.setState({
-            isAuthenticated: !this.state.isAuthenticated
-        });
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const handleAuthentication = () => {
+        setIsAuthenticated(!isAuthenticated)
     };
 
-    render() { 
-        return (
-            <AuthContext.Provider value={{...this.state, authentication: this.handleAuthentication}}>
-                {this.props.children}
-            </AuthContext.Provider>
-        );
-    }
+    return ( 
+        <AuthContext.Provider value={{isAuthenticated, authentication: handleAuthentication}}>
+            {props.children}
+        </AuthContext.Provider>
+     );
 }
  
 export default AuthContextProvider;

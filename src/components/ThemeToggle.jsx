@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 
+const ThemeToggle = () => {
+    const { toggleThemeMethod } = useContext(ThemeContext);
 
-class ThemeToggle extends Component {
-    state = {  }
-    render() { 
-        return ( 
-            <ThemeContext.Consumer>{(toggle) => {
-                const { toggleThemeMethod } = toggle;
-                return (
-                    <button onClick={toggleThemeMethod}>change Theme</button>
-                )
-            }}
-            </ThemeContext.Consumer>
-         );
-    }
+
+    return ( 
+        <button onClick={toggleThemeMethod}>change Theme</button>
+     );
 }
  
 export default ThemeToggle;
